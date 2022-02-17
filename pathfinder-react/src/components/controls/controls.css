@@ -1,0 +1,17 @@
+.name {
+    font-size: 1.1em;
+    color: #444;
+}
+
+.name > b {
+    color: #000;
+}
+
+.control-group {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    box-sizing: border-box;
+    height: 100%;
+    padding: 5px 0;
+}
