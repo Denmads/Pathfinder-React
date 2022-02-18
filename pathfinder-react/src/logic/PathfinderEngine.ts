@@ -27,6 +27,7 @@ export default class PathfinderEngine {
         {id: "weight", name: "Weight"},
         {id: "erase", name: "Erase"}
     ]
+    toolChangeListeners: ((value: string) => void)[] = []
 
     start: Cell | null = null;
     end: Cell | null = null;
@@ -107,8 +108,20 @@ export default class PathfinderEngine {
         return this.layouts.map(v => ({id: v.id, name: v.generator.displayName()}))
     }
 
-    setSelectedTool(tool: string) {
+    setSelectedTool(tool: string, updateListeners: boolean = false) {
         this.selectedTool = tool;
+
+        if (updateListeners) {
+            this.toolChangeListeners.forEach(l => l(this.selectedTool))
+        }
+    }
+
+    addToolChangeListener(func: (value: string) => void) {
+        this.toolChangeListeners.push(func);
+    }
+
+    removeToolChangeListener(func: (value: string) => void) {
+        this.toolChangeListeners = this.toolChangeListeners.filter(l => l !== func)
     }
 
     setToolSetting(val: string) {
