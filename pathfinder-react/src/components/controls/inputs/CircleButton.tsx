@@ -7,7 +7,8 @@ export interface CircleButtonProps {
     highlight?: string,
     pressed?: string,
     width?: string,
-    height?: string
+    height?: string,
+    onClick?: (event: React.MouseEvent<HTMLDivElement>) => void
 }
 
 function CircleButton(props: React.PropsWithChildren<CircleButtonProps>) {
@@ -47,7 +48,7 @@ function CircleButton(props: React.PropsWithChildren<CircleButtonProps>) {
     `
 
   return (
-    <Btn>{props.children}</Btn>
+    <Btn onClick={props.onClick}>{props.children}</Btn>
   )
 }
 

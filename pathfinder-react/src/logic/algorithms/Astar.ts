@@ -10,4 +10,7 @@ export default class Astar implements Algorithm {
 
     }
 
+    displayName() {
+        return "A* Pathfinding"
+    }
 }

@@ -8,12 +8,15 @@ export interface AlgoSelectProps {
 function AlgorithmSelector(props: AlgoSelectProps & PropsWithEngine) {
 
   function setAlgo(event: ChangeEvent<HTMLSelectElement>) {
-    props.pathEngine.setSelectedAlgorithm(event.target.value)
+    props.pathEngine.setSelectedAlgorithm(event.currentTarget.value)
   }
 
   return (
     <select onChange={setAlgo} style={{marginRight: props.marginRight ? props.marginRight : '0px'}}>
         <option value="" disabled selected>Select Algorithm</option>
+        {
+            props.pathEngine.getAllAlgorithms().map((algo, index) => <option key={index} value={algo.id}>{algo.name}</option>)
+        }
     </select>
   )
 }

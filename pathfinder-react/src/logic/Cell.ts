@@ -1,4 +1,5 @@
 import Grid from "./Grid";
+import PathfinderEngine from "./PathfinderEngine";
 
 export default class Cell {
     ref: HTMLDivElement;
@@ -9,12 +10,14 @@ export default class Cell {
     blocked: boolean = false;
 
     grid: Grid;
+    engine: PathfinderEngine;
 
-    constructor(ref: HTMLDivElement, x: number, y: number, grid: Grid) {
+    constructor(ref: HTMLDivElement, x: number, y: number, grid: Grid, engine: PathfinderEngine) {
         this.ref = ref;
         this.x = x;
         this.y = y;
         this.grid = grid;
+        this.engine = engine;
     }
 
     setWeight(val: number) {
@@ -24,10 +27,20 @@ export default class Cell {
 
     setBlocked(val: boolean) {
         this.blocked = val;
-        this.ref.style.backgroundColor = this.blocked ? "#000000" : "none";
+        this.ref.style.backgroundColor = this.blocked ? "#000000" : "#00000000";
+    }
+
+    isBlocked(): boolean {
+        return this.blocked;
     }
 
     setColor(val: string) {
+        if (this.engine.start === this || this.engine.end === this || this.blocked) return;
+
+        this.ref.style.backgroundColor = val
+    }
+
+    setColorForced(val: string) {
         this.ref.style.backgroundColor = val
     }
 
@@ -55,5 +68,16 @@ export default class Cell {
         }
 
         return neighbours;
+    }
+
+    reset() {
+        this.weight = 1;
+        this.ref.innerText = "";
+        this.blocked = false;
+        this.resetColor();
+    }
+
+    resetColor() {
+        this.setColor("#00000000");
     }
 }

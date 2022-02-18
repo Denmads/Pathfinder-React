@@ -18,10 +18,10 @@ function ControlBar(props: StyleProp & PropsWithEngine) {
   return (
     <div className={props.className}>
       <MediaQuery minWidth={1024}>
-        <DesktopControls></DesktopControls>
+        <DesktopControls pathEngine={props.pathEngine}></DesktopControls>
       </MediaQuery>
       <MediaQuery maxWidth={1023}>
-        <MobileControls></MobileControls>
+        <MobileControls pathEngine={props.pathEngine}></MobileControls>
       </MediaQuery>
     </div>
   )

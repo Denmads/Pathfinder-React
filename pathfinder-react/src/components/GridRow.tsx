@@ -20,7 +20,7 @@ function GridRow(props: GridRowProps & PropsWithEngine) {
   return (
     <div className="grid-row" style={{height: props.cellHeight + "px"}}>
       {
-        Array.from(Array(props.numCells).keys()).map(key => <div data-x={key} data-y={props.rowId} key={key} style={{height: "100%", width: props.cellWidth, border: "1px dotted gray"}} onClick={clickCell}></div>)
+        Array.from(Array(props.numCells).keys()).map(key => <div data-x={key} data-y={props.rowId} key={key} style={{userSelect: "none", height: "100%", width: props.cellWidth, border: "1px dotted gray", display: "flex", justifyContent: "center", alignItems: "center"}} onClick={clickCell}></div>)
       }
     </div>
   )

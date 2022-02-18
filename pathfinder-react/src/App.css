@@ -44,6 +44,16 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  flex-grow: 1;
+}
+
+.buttons {
+  flex-grow: 1;
+  width: 100%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .grid-view {

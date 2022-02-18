@@ -64,6 +64,23 @@
   }
 
   #tool-setting {
-      display: none;
       width: 20%;
+  }
+
+  .btn-gen {
+    background-color: #3333bb;
+    padding: 10px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    font-weight: 600;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .btn-gen:hover {
+    background-color: #4d4dbb;
+  }
+
+  .btn-gen:active {
+    background-color: #2727a0;
   }
