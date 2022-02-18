@@ -41,7 +41,7 @@ function CircleButton(props: React.PropsWithChildren<CircleButtonProps>) {
         }
 
         &:active {
-            background:${props => props.pressed || '#0353a4'}
+            background:${props => props.pressed || '#3479be'}
         }
 
     `

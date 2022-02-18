@@ -1,8 +1,12 @@
 import React from 'react'
 
-function AlgorithmSelector() {
+export interface AlgoSelectProps {
+  marginRight?: string
+}
+
+function AlgorithmSelector(props: AlgoSelectProps) {
   return (
-    <select >
+    <select style={{marginRight: props.marginRight ? props.marginRight : '0px'}}>
         <option value="" disabled selected>Select Algorithm</option>
     </select>
   )
