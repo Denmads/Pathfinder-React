@@ -3,6 +3,7 @@ import { StyleProp } from '../../interfaces'
 import MediaQuery from 'react-responsive'
 import DesktopControls from './DesktopControls'
 import MobileControls from './MobileControls'
+import { PropsWithEngine } from '../../App'
 
 //Start, stop, next step
 //Select Algorithm
@@ -13,7 +14,7 @@ import MobileControls from './MobileControls'
 //  Start
 //  End
 
-function ControlBar(props: StyleProp) {
+function ControlBar(props: StyleProp & PropsWithEngine) {
   return (
     <div className={props.className}>
       <MediaQuery minWidth={1024}>

@@ -6,8 +6,9 @@ import {BsPlayFill} from 'react-icons/bs'
 import {FaStepForward, FaStop} from 'react-icons/fa'
 import Dropdown from './inputs/Dropdown'
 import ToolSelector from './inputs/ToolSelector'
+import { PropsWithEngine } from '../../App'
 
-function DesktopControls() {
+function DesktopControls(props: PropsWithEngine) {
     const layouts = [
         {
             name: "Item 1",

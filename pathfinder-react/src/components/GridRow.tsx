@@ -1,4 +1,5 @@
 import React from 'react'
+import { PropsWithEngine } from '../App';
 
 export interface GridRowProps {
   rowId: number
@@ -7,13 +8,13 @@ export interface GridRowProps {
   cellHeight: number
 }
 
-function GridRow(props: GridRowProps) {
+function GridRow(props: GridRowProps & PropsWithEngine) {
 
   const clickCell = (event: React.MouseEvent<HTMLDivElement>) => {
-    const x = event.currentTarget.getAttribute("data-x")
-    const y = event.currentTarget.getAttribute("data-y")
+    const x = parseInt(event.currentTarget.getAttribute("data-x")!)
+    const y = parseInt(event.currentTarget.getAttribute("data-y")!)
 
-    console.log(x + " | " + y);
+    props.pathEngine.onCellClicked(x, y)
   }
 
   return (

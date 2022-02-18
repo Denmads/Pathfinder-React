@@ -16,6 +16,8 @@ export default class Grid {
     }
 
     getCell(x: number, y: number) {
+        if (x < 0 || x >= this.width || y < 0 || y >= this.height) return null;
+
         return this.cells[x + y * this.width]
     }
 }
