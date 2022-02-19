@@ -7,6 +7,7 @@ import {FaStepForward, FaStop} from 'react-icons/fa'
 import Dropdown from './inputs/Dropdown'
 import ToolSelector from './inputs/ToolSelector'
 import { PropsWithEngine } from '../../App'
+import SpeedControl from './inputs/SpeedControl'
 
 function DesktopControls(props: PropsWithEngine) {
     const layouts = props.pathEngine.getAllLayouts().map(l => ({name: l.name, value: l.id}))
@@ -21,6 +22,9 @@ function DesktopControls(props: PropsWithEngine) {
         <div className="control-group">
             <Dropdown items={layouts} onSelect={runLayout} btnText="Generate Layout"></Dropdown>
             <ToolSelector pathEngine={props.pathEngine}></ToolSelector>
+        </div>
+        <div className="control-group">
+            <SpeedControl pathEngine={props.pathEngine}></SpeedControl>
         </div>
         <div className="control-group">
             <AlgorithmSelector pathEngine={props.pathEngine} marginRight="25px"></AlgorithmSelector>
