@@ -87,6 +87,30 @@ export default class PathfinderEngine {
         return this.runningCtx != null
     }
 
+    getStepRate() {
+        return this.stepRate;
+    }
+
+    incrementStepRate() {
+        this.setStepRate(this.stepRate+1)
+    }
+
+    decrementStepRate() {
+        this.setStepRate(this.stepRate-1)
+    }
+
+    private setStepRate(val: number) {
+        console.log(val)
+        if (val < 1 || val > 10) return;
+        
+        this.stepRate = val
+
+        if (this.isRunning() && this.runId != null) {
+            clearInterval(this.runId);
+            this.runId = setInterval(() => this.runningCtx!.step(), 1000 / this.stepRate)
+        }
+    }
+
     setSelectedAlgorithm(selected: string) {
         this.selectedAlgorithm = selected;
     }

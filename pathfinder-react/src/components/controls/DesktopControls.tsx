@@ -24,7 +24,7 @@ function DesktopControls(props: PropsWithEngine) {
             <ToolSelector pathEngine={props.pathEngine}></ToolSelector>
         </div>
         <div className="control-group">
-            <SpeedControl pathEngine={props.pathEngine}></SpeedControl>
+            <SpeedControl pathEngine={props.pathEngine} height="60%"></SpeedControl>
         </div>
         <div className="control-group">
             <AlgorithmSelector pathEngine={props.pathEngine} marginRight="25px"></AlgorithmSelector>

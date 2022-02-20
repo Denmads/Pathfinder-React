@@ -15,6 +15,10 @@ export default class Grid {
         this.engine = engineRef;
     }
 
+    foreach(f: (c: Cell) => void) {
+        this.cells.forEach(c => f(c));
+    }
+
     addCell(c: Cell) {
         this.cells.push(c)
     }

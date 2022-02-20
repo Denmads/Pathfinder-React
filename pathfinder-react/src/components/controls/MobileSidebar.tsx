@@ -2,6 +2,7 @@ import React from 'react'
 import {IoMdClose} from 'react-icons/io'
 import { PropsWithEngine } from '../../App'
 import AlgorithmSelector from './inputs/AlgorithmSelector'
+import SpeedControl from './inputs/SpeedControl'
 import ToolSelector from './inputs/ToolSelector'
 
 export interface SidebarProps {
@@ -24,6 +25,7 @@ function MobileSidebar(props: SidebarProps & PropsWithEngine) {
         <p className="name"><b>Path</b>Finder</p>
 
         <div className="menu-group">
+          <SpeedControl height="1.5em" pathEngine={props.pathEngine}></SpeedControl>
           <AlgorithmSelector pathEngine={props.pathEngine}></AlgorithmSelector>
           <ToolSelector pathEngine={props.pathEngine}></ToolSelector>
           <h3>Layouts</h3>
