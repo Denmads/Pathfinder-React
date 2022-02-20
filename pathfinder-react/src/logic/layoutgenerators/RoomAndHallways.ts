@@ -3,10 +3,6 @@ import LayoutGenerator from "../LayoutGenerator";
 
 export default class RoomAndHallways implements LayoutGenerator {
     
-    private range(n: number) {
-        return Array(Array(n).keys())
-    }
-    
     generate(grid: Grid) {
         grid.foreach(c => {
             c.setBlocked(true)

@@ -5,6 +5,8 @@ import Algorithm from "./Algorithm"
 import LayoutGenerator from "./LayoutGenerator";
 import RoomAndHallways from "./layoutgenerators/RoomAndHallways";
 import RunContext from "./RunContext";
+import Maze from "./layoutgenerators/Maze";
+import FloodFill from "./algorithms/FloodFill";
 
 export default class PathfinderEngine {
     grid: Grid | null = null;
@@ -13,11 +15,13 @@ export default class PathfinderEngine {
     toolSetting: string = "1";
 
     algorithms: {id: string, algorithm: Algorithm}[] = [
-        {id: "astar", algorithm: new Astar()}
+        {id: "astar", algorithm: new Astar()},
+        {id: "flood", algorithm: new FloodFill()}
     ]
 
     layouts: {id:  string, generator: LayoutGenerator}[] = [
-        {id: "rah", generator: new RoomAndHallways()}
+        {id: "rah", generator: new RoomAndHallways()},
+        {id: "maz", generator: new Maze()}
     ]
 
     tools: {id: string, name: string}[] = [
@@ -38,11 +42,11 @@ export default class PathfinderEngine {
     runningCtx: RunContext | null = null;
     runId: any | null = null;
 
-    stepRate: number = 1;
+    stepRate: number = 10;
 
     run() {
         if (this.isRunning() && this.runId == null) {
-            this.runId = setInterval(() => this.runningCtx!.step(), 1000 / this.stepRate)
+            this.runId = this.startInterval()
             return
         }
 
@@ -52,7 +56,7 @@ export default class PathfinderEngine {
         this.runningCtx = new RunContext(this.start, this.end, algo.algorithm)
         this.runningCtx.init()
 
-        this.runId = setInterval(() => this.runningCtx!.step(), 1000 / this.stepRate)
+        this.runId = this.startInterval()
         
     }
 
@@ -60,7 +64,10 @@ export default class PathfinderEngine {
         if (this.isRunning()) {
             clearInterval(this.runId)
             this.runId = null;
-            this.runningCtx!.step()
+
+            if (!this.runningCtx!.isDone()) {
+                this.runningCtx!.step()
+            }
 
             return
         }
@@ -83,6 +90,13 @@ export default class PathfinderEngine {
         this.runId = null;
     }
 
+    private startInterval() {
+        return setInterval(() => {
+            if (!this.runningCtx!.isDone())
+                this.runningCtx!.step()
+        }, 1000 / this.stepRate)
+    }
+
     private isRunning() {
         return this.runningCtx != null
     }
@@ -101,7 +115,7 @@ export default class PathfinderEngine {
 
     private setStepRate(val: number) {
         console.log(val)
-        if (val < 1 || val > 10) return;
+        if (val < 1 || val > 100) return;
         
         this.stepRate = val
 

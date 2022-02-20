@@ -51,13 +51,13 @@ export default class Cell {
         return this.grid.getCell(x, y);
     }
 
-    neighbours(diagonal: boolean) {
+    neighbours(diagonal: boolean = false) {
         const maxDist = diagonal ? 2 : 1;
         
         const neighbours = []
         for (let y: number = -1; y <= 1; y++) {
             for (let x: number = -1; x <= 1; x++) {
-                const nc = this.relativeCell(this.x + x, this.y + y);
+                const nc = this.relativeCell(x, y);
                 if (nc != null) {
                     const dist = Math.abs(x) + Math.abs(y);
                     if (dist <= maxDist) {

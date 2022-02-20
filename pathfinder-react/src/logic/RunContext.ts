@@ -22,6 +22,10 @@ export default class RunContext {
         this.usedAlgorithm.step(this);
     }
 
+    isDone() {
+        return this.usedAlgorithm.isCompleted(this);
+    }
+
     createVariable(name: string, initialValue: any) {
         this.variables.set(name, initialValue);
     }

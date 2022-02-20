@@ -11,7 +11,7 @@ export default class Astar implements Algorithm {
     }
 
     isCompleted(ctx: RunContext) {
-        
+        return true;
     }
 
     displayName() {
