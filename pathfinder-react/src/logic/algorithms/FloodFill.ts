@@ -1,4 +1,5 @@
 import Algorithm from '../Algorithm'
+import Cell from '../Cell';
 import RunContext from '../RunContext';
 
 export default class FloodFill implements Algorithm {
@@ -18,7 +19,7 @@ export default class FloodFill implements Algorithm {
         let nbrs = cell.neighbours()
         for (let i = 0; i < nbrs.length; i++) {
             let nc = nbrs[i];
-            if (!this.checked(ctx).includes(nc) && !this.notChecked(ctx).includes(nc) && !nc.isBlocked()) {
+            if (!this.inArr(this.checked(ctx), nc) && !this.inArr(this.notChecked(ctx), nc) && !nc.isBlocked()) {
                 this.notChecked(ctx).push(nc)
                 nc.setColor(this.notCheckedColor)
             }
@@ -29,7 +30,7 @@ export default class FloodFill implements Algorithm {
     }
 
     isCompleted(ctx: RunContext) {
-        return this.checked(ctx).includes(ctx.end)
+        return this.checked(ctx).filter((c: Cell) => c.equals(ctx.end)).length > 0
     }
 
     displayName() {
@@ -42,5 +43,9 @@ export default class FloodFill implements Algorithm {
 
     private checked(ctx: RunContext) {
         return ctx.getVariable("checked")
+    }
+
+    private inArr(arr: Cell[], c: Cell) {
+        return arr.filter((ca: Cell) => ca.equals(c))
     }
 }

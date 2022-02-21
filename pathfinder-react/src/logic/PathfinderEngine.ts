@@ -94,6 +94,9 @@ export default class PathfinderEngine {
         return setInterval(() => {
             if (!this.runningCtx!.isDone())
                 this.runningCtx!.step()
+            else {
+                console.log(this.runningCtx)
+            }
         }, 1000 / this.stepRate)
     }
 

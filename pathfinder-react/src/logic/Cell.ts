@@ -80,4 +80,8 @@ export default class Cell {
     resetColor() {
         this.setColor("#00000000");
     }
+
+    equals(other: Cell) {
+        return this.x == other.x && this.y == other.y;
+    }
 }
