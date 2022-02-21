@@ -219,6 +219,10 @@ export default class PathfinderEngine {
                 break
             case "weight":
                 const we = parseFloat(this.toolSetting)
+                if (we === NaN) {
+                    alert("Weight must be a number!");
+                    return;
+                }
                 cell.setWeight(we)
                 break
             case "erase":
