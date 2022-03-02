@@ -1,11 +1,10 @@
 import React from 'react'
-import { PropsWithEngine } from '../App'
 import Grid from './Grid'
 
-function GridView(props: PropsWithEngine) {
+function GridView() {
   return (
     <div className="grid-view">
-      <Grid pathEngine={props.pathEngine}></Grid>
+      <Grid></Grid>
     </div>
   )
 }

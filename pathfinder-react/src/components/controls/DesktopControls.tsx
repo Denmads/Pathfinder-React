@@ -6,14 +6,14 @@ import {BsPlayFill} from 'react-icons/bs'
 import {FaStepForward, FaStop} from 'react-icons/fa'
 import Dropdown from './inputs/Dropdown'
 import ToolSelector from './inputs/ToolSelector'
-import { PropsWithEngine } from '../../App'
 import SpeedControl from './inputs/SpeedControl'
+import Globals from '../../globals'
 
-function DesktopControls(props: PropsWithEngine) {
-    const layouts = props.pathEngine.getAllLayouts().map(l => ({name: l.name, value: l.id}))
+function DesktopControls() {
+    const layouts = Globals.engine.getAllLayouts().map(l => ({name: l.name, value: l.id}))
 
     const runLayout = (s: string) => {
-        props.pathEngine.runLayoutGenerator(s)
+        Globals.engine.runLayoutGenerator(s)
     }
 
   return (
@@ -21,20 +21,20 @@ function DesktopControls(props: PropsWithEngine) {
         <p className="name"><b>Path</b>Finder</p>
         <div className="control-group">
             <Dropdown items={layouts} onSelect={runLayout} btnText="Generate Layout"></Dropdown>
-            <ToolSelector pathEngine={props.pathEngine}></ToolSelector>
+            <ToolSelector></ToolSelector>
         </div>
         <div className="control-group">
-            <SpeedControl pathEngine={props.pathEngine} height="60%"></SpeedControl>
+            <SpeedControl height="60%"></SpeedControl>
         </div>
         <div className="control-group">
-            <AlgorithmSelector pathEngine={props.pathEngine} marginRight="25px"></AlgorithmSelector>
-            <CircleButton height="60%" backgroundColor="#538d22" highlight="#73a942" pressed="#219637" onClick={() => props.pathEngine.run()}>
+            <AlgorithmSelector marginRight="25px"></AlgorithmSelector>
+            <CircleButton height="60%" backgroundColor="#538d22" highlight="#73a942" pressed="#219637" onClick={() => Globals.engine.run()}>
                 <BsPlayFill size="1em"></BsPlayFill>
             </CircleButton>
-            <CircleButton height="60%" onClick={() => props.pathEngine.step()}>
+            <CircleButton height="60%" onClick={() => Globals.engine.step()}>
                 <FaStepForward size="0.7em"></FaStepForward>
             </CircleButton>
-            <CircleButton height="60%" backgroundColor="#df7373" highlight="#e39695" pressed="#ce414f" onClick={() => props.pathEngine.stop()}>
+            <CircleButton height="60%" backgroundColor="#df7373" highlight="#e39695" pressed="#ce414f" onClick={() => Globals.engine.stop()}>
                 <FaStop size="0.7em"></FaStop>
             </CircleButton>
         </div>

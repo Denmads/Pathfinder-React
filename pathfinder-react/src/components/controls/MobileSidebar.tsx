@@ -1,20 +1,20 @@
 import React from 'react'
 import {IoMdClose} from 'react-icons/io'
-import { PropsWithEngine } from '../../App'
 import AlgorithmSelector from './inputs/AlgorithmSelector'
 import SpeedControl from './inputs/SpeedControl'
 import ToolSelector from './inputs/ToolSelector'
+import Globals from '../../globals'
 
 export interface SidebarProps {
     show: boolean,
     setShowMenu: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-function MobileSidebar(props: SidebarProps & PropsWithEngine) {
+function MobileSidebar(props: SidebarProps) {
 
   const genLayout = (event: React.MouseEvent<HTMLDivElement>) => {
       const id = event.currentTarget.getAttribute('data-id')!
-      props.pathEngine.runLayoutGenerator(id)
+      Globals.engine.runLayoutGenerator(id)
   }
 
   return (
@@ -25,13 +25,13 @@ function MobileSidebar(props: SidebarProps & PropsWithEngine) {
         <p className="name"><b>Path</b>Finder</p>
 
         <div className="menu-group">
-          <SpeedControl height="1.5em" pathEngine={props.pathEngine}></SpeedControl>
-          <AlgorithmSelector pathEngine={props.pathEngine}></AlgorithmSelector>
-          <ToolSelector pathEngine={props.pathEngine}></ToolSelector>
+          <SpeedControl height="1.5em"></SpeedControl>
+          <AlgorithmSelector></AlgorithmSelector>
+          <ToolSelector></ToolSelector>
           <h3>Layouts</h3>
             <div className="buttons">
               {
-                props.pathEngine.getAllLayouts().map(l => <div data-id={l.id} onClick={genLayout} className="btn-gen">{l.name}</div>)
+                Globals.engine.getAllLayouts().map(l => <div data-id={l.id} onClick={genLayout} className="btn-gen">{l.name}</div>)
               }
             </div>
         </div>

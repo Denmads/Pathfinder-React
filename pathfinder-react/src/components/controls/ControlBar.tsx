@@ -3,7 +3,6 @@ import { StyleProp } from '../../interfaces'
 import MediaQuery from 'react-responsive'
 import DesktopControls from './DesktopControls'
 import MobileControls from './MobileControls'
-import { PropsWithEngine } from '../../App'
 
 //Start, stop, next step
 //Select Algorithm
@@ -14,14 +13,14 @@ import { PropsWithEngine } from '../../App'
 //  Start
 //  End
 
-function ControlBar(props: StyleProp & PropsWithEngine) {
+function ControlBar(props: StyleProp) {
   return (
     <div className={props.className}>
       <MediaQuery minWidth={1024}>
-        <DesktopControls pathEngine={props.pathEngine}></DesktopControls>
+        <DesktopControls></DesktopControls>
       </MediaQuery>
       <MediaQuery maxWidth={1023}>
-        <MobileControls pathEngine={props.pathEngine}></MobileControls>
+        <MobileControls></MobileControls>
       </MediaQuery>
     </div>
   )

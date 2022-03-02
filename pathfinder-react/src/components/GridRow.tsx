@@ -1,5 +1,5 @@
 import React from 'react'
-import { PropsWithEngine } from '../App';
+import Globals from '../globals'
 
 export interface GridRowProps {
   rowId: number
@@ -8,13 +8,13 @@ export interface GridRowProps {
   cellHeight: number
 }
 
-function GridRow(props: GridRowProps & PropsWithEngine) {
+function GridRow(props: GridRowProps) {
 
   const clickCell = (event: React.MouseEvent<HTMLDivElement>) => {
     const x = parseInt(event.currentTarget.getAttribute("data-x")!)
     const y = parseInt(event.currentTarget.getAttribute("data-y")!)
 
-    props.pathEngine.onCellClicked(x, y)
+    Globals.engine.onCellClicked(x, y)
   }
 
   return (
@@ -32,7 +32,7 @@ function GridRow(props: GridRowProps & PropsWithEngine) {
                         const x = parseInt(event.currentTarget.getAttribute("data-x")!)
                         const y = parseInt(event.currentTarget.getAttribute("data-y")!)
 
-                        props.pathEngine.onCellClicked(x, y)
+                        Globals.engine.onCellClicked(x, y)
                       }
                     }}>
                   </div>
