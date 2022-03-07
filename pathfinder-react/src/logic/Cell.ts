@@ -60,7 +60,7 @@ export default class Cell {
                 const nc = this.relativeCell(x, y);
                 if (nc != null) {
                     const dist = Math.abs(x) + Math.abs(y);
-                    if (dist <= maxDist) {
+                    if (dist <= maxDist && dist > 0) {
                         neighbours.push(nc);
                     }
                 }

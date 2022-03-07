@@ -46,6 +46,6 @@ export default class FloodFill implements Algorithm {
     }
 
     private inArr(arr: Cell[], c: Cell) {
-        return arr.filter((ca: Cell) => ca.equals(c))
+        return arr.filter((ca: Cell) => ca.equals(c)).length > 0
     }
 }
